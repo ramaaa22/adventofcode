@@ -27,3 +27,39 @@ File.foreach("input.txt").with_index do |line, line_no|
 end
 
 puts sum
+
+
+# PART TWO
+
+lines = File.readlines("input.txt")
+
+array = []
+siguiente = 0
+(0..99).each { |iterator|
+    array[iterator]= lines[siguiente]
+    siguiente+=1
+    array[iterator]+= lines[siguiente]
+    siguiente+=1
+    array[iterator]+= lines[siguiente]
+    siguiente+=1
+}
+
+
+sum = 0
+
+array.length.times do |iterator|
+    group = array[iterator]
+    group1 = group.split()[0]
+    group2 = group.split()[1]
+    group3 = group.split()[2]
+    group1 = group1.chars
+    group1.each do |elem|
+        if group2.include?(elem) && group3.include?(elem)
+            sum+=values[elem]
+            break
+        end
+    end
+end
+
+puts sum
+
